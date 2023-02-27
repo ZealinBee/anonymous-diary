@@ -1,19 +1,19 @@
-import { useState } from "react";
-import DiaryForm from "./components/DiaryForm";
-import "./App.css";
-import Button from "@mui/material/Button";
-import DiaryList from "./components/DiaryList";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Diarypage from "./components/Diarypage";
+import Home from "./components/Home";
+import "./App.css"
 
 function App() {
-  const [isClosed, setIsClosed] = useState(true);
 
   return (
     <>
-      <Button variant="contained" onClick={() => setIsClosed(false)}>
-        Write a diary
-      </Button>
-      <DiaryList></DiaryList>
-      <DiaryForm isClosed={isClosed} setIsClosed={setIsClosed}></DiaryForm>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home></Home>}></Route>
+          <Route path="/:id" element={<Diarypage></Diarypage>}></Route>
+        </Routes>
+       
+      </Router>
     </>
   );
 }

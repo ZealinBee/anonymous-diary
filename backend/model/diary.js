@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const DiarySchema = new Schema(
   {
+    title:{type:String, required: true, maxlength: 100},
     entry: { type: String, required: true, maxlength: 900 },
     date: { type: Date, required: true },
     
