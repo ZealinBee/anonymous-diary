@@ -4,30 +4,54 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react";
 
 function DiaryForm(props) {
   const [title, setTitle] = useState("");
   const [entry, setEntry] = useState("");
   const { isClosed, setIsClosed } = props;
 
-  function submitForm(e) {
-    e.preventDefault()
-    setIsClosed(true)
-    fetch("http://localhost:8000/diaries", {
+  async function submitForm(e) {
+    e.preventDefault();
+    if(!title || !entry) {
+      alert("Please fill out both fields")
+      return
+    }
+    if(title.length > 100) {
+      alert("Title must be less than 100 characters")
+      return
+    }
+    if(entry.length > 1000) {
+      alert("Entry must be less than 5000 characters")
+      return
+    }
+    if(title.length < 2) {
+      alert("Title must be at least 2 character")
+      return
+    }
+    if(entry.length < 2) {
+      alert("Entry must be at least 2 character")
+      return
+    }
+    console.log(entry)
+    console.log(title)
+    setIsClosed(true);
+    await fetch("http://localhost:8000/diaries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        entry: entry,
         title: title,
-        entry:entry,
         date: new Date().toLocaleDateString(),
-      })
+      }),
     })
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch(error => console.log(error))
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+    setTitle("");
+    setEntry("");
   }
   return (
     <>
@@ -70,7 +94,7 @@ function DiaryForm(props) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            sx={{ marginBottom: "15px", color: "#0c0c0d" }} // override default margin for TextField
+            sx={{ marginBottom: "15px", color: "#0c0c0d" }}
           />
           <TextField
             id="outlined-multiline-static"
@@ -80,7 +104,7 @@ function DiaryForm(props) {
             multiline
             required
             rows={10}
-            sx={{ marginBottom: "15px", color: "#0c0c0d" }} // override default margin for TextField
+            sx={{ marginBottom: "15px", color: "#0c0c0d" }}
           />
           <Button
             variant="outlined"

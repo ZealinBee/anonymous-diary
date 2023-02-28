@@ -1,21 +1,19 @@
 import React from "react";
 import Diary from "./Diary";
 import { useState, useEffect } from "react";
-import "../App.css"
-
+import "../App.css";
 
 function DiaryList() {
-
-  const [diaries, setDiaries] = useState([])
+  const [diaries, setDiaries] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8000/diaries")
       .then((res) => res.json())
       .then((data) => {
-        setDiaries(data)
+        setDiaries(data);
       })
       .catch((error) => {
-        console.log("Error fetcing data: ", error)
+        console.log("Error fetcing data: ", error);
       });
   }, []);
 
@@ -23,12 +21,26 @@ function DiaryList() {
     <>
       <main>
         {diaries.map((diary) => {
-          console.log(diary)
-          return (
-            <Diary title={diary.title} entry={diary.entry} id={diary.id}></Diary>
-          );
+          if (diary.entry.length > 100) {
+            const shorterEntry =
+              diary.entry.split(" ").slice(0, 60).join(" ") + "...";
+            return (
+              <Diary
+                title={diary.title}
+                entry={shorterEntry}
+                id={diary.id}
+              ></Diary>
+            );
+          } else {
+            return (
+              <Diary
+                title={diary.title}
+                entry={diary.entry}
+                id={diary.id}
+              ></Diary>
+            );
+          }
         })}
-   
       </main>
     </>
   );
