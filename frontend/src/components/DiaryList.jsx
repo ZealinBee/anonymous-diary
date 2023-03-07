@@ -6,7 +6,7 @@ import "../App.css";
 function DiaryList({diaries, setDiaries}) {
 
   useEffect(() => {
-    fetch(`${process.env.URL}/diaries`)
+    fetch(`https://anonymous-diary-fullstack.up.railway.app/diaries`)
       .then((res) => res.json())
       .then((data) => {
         setDiaries(data);

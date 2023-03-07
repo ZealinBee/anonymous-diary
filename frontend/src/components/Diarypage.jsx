@@ -7,7 +7,7 @@ function Diarypage() {
   const id = useParams();
   const [currentDiary, setCurrentDiary] = useState({});
   useEffect(() => {
-    fetch(`${process.env.URL}/diaries/`)
+    fetch(`https://anonymous-diary-fullstack.up.railway.app/diaries/`)
       .then((res) => res.json())
       .then((data) => {
         data.map((diary) => {

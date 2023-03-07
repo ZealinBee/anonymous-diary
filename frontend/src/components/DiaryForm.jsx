@@ -34,7 +34,8 @@ function DiaryForm(props) {
       return
     }
     setIsClosed(true);
-    await fetch(`${process.env.URL}/diaries`, {
+
+    await fetch(`https://anonymous-diary-fullstack.up.railway.app/diaries`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
