@@ -16,7 +16,7 @@ router.get("/diaries", async (req, res) => {
 
 router.post("/diaries", async (req, res) => {
   const entry = new Diary({
-    title: req.body.entry,
+    title: req.body.title,
     entry: req.body.entry,
     date: req.body.date,
   });

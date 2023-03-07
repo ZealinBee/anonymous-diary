@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv").config();
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
@@ -23,6 +24,15 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", () => {
   console.log("Connected to MongoDB successfully!");
 });
+if (process.env.NODE.ENV == "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "frontend", "dist", "index.html")
+    )
+  );
+}
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
