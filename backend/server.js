@@ -24,7 +24,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", () => {
   console.log("Connected to MongoDB successfully!");
 });
-if (process.env.NODE.ENV == "production") {
+if (process.env.NODE_ENV == "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
   app.get("*", (req, res) =>
@@ -32,6 +32,10 @@ if (process.env.NODE.ENV == "production") {
       path.resolve(__dirname, "../", "frontend", "dist", "index.html")
     )
   );
+}else {
+  app.get("/", (req, res) => {
+    res.send("Please set to production")
+  })
 }
 
 app.listen(port, () => {
