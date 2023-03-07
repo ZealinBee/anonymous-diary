@@ -7,6 +7,7 @@ import DiaryForm from "./DiaryForm";
 
 function Home() {
   const [isClosed, setIsClosed] = useState(true);
+  const [diaries, setDiaries] = useState([]);
 
   return (
     <>
@@ -14,8 +15,8 @@ function Home() {
       <Button variant="contained" onClick={() => setIsClosed(false)}>
         Write a diary
       </Button>
-      <DiaryList></DiaryList>
-      <DiaryForm isClosed={isClosed} setIsClosed={setIsClosed}></DiaryForm>
+      <DiaryList diaries={diaries} setDiaries={setDiaries}></DiaryList>
+      <DiaryForm isClosed={isClosed} setIsClosed={setIsClosed} diaries={diaries} setDiaries={setDiaries}></DiaryForm>
     </>
   );
 }

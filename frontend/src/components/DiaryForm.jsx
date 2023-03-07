@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 function DiaryForm(props) {
   const [title, setTitle] = useState("");
   const [entry, setEntry] = useState("");
-  const { isClosed, setIsClosed } = props;
+  const { isClosed, setIsClosed, diaries, setDiaries } = props;
 
   async function submitForm(e) {
     e.preventDefault();
@@ -33,8 +33,6 @@ function DiaryForm(props) {
       alert("Entry must be at least 2 character")
       return
     }
-    console.log(entry)
-    console.log(title)
     setIsClosed(true);
     await fetch("http://localhost:8000/diaries", {
       method: "POST",
@@ -50,8 +48,10 @@ function DiaryForm(props) {
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
+    setDiaries([...diaries, {entry: entry, title: title, date: new Date().toLocaleDateString()}])
     setTitle("");
     setEntry("");
+
   }
   return (
     <>

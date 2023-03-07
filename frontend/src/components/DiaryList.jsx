@@ -3,8 +3,7 @@ import Diary from "./Diary";
 import { useState, useEffect } from "react";
 import "../App.css";
 
-function DiaryList() {
-  const [diaries, setDiaries] = useState([]);
+function DiaryList({diaries, setDiaries}) {
 
   useEffect(() => {
     fetch("http://localhost:8000/diaries")
