@@ -7,7 +7,7 @@ function Diarypage() {
   const id = useParams();
   const [currentDiary, setCurrentDiary] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:8000/diaries/`)
+    fetch(`${process.env.URL}/diaries/`)
       .then((res) => res.json())
       .then((data) => {
         data.map((diary) => {

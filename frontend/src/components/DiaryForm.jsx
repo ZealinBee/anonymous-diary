@@ -34,7 +34,7 @@ function DiaryForm(props) {
       return
     }
     setIsClosed(true);
-    await fetch("http://localhost:8000/diaries", {
+    await fetch(`${process.env.URL}/diaries`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
