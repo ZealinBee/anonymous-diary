@@ -7,7 +7,7 @@ function Diarypage() {
   const id = useParams();
   const [currentDiary, setCurrentDiary] = useState({});
   useEffect(() => {
-    fetch(`${process.env.URL}/diaries/`)
+    fetch(`http://localhost:8000/diaries`)
       .then((res) => res.json())
       .then((data) => {
         data.map((diary) => {
@@ -26,15 +26,12 @@ function Diarypage() {
   return (
     <>
       <Link to={"/"}>
-        {" "}
         <Button variant="contained">Back to home</Button>
-        <div class="diary-page">
-          <h1>{currentDiary.title}</h1>
-          <p>
-            {currentDiary.entry}
-          </p>
-        </div>
       </Link>
+      <div class="diary-page">
+        <h1>{currentDiary.title}</h1>
+        <p>{currentDiary.entry}</p>
+      </div>
     </>
   );
 }

@@ -33,8 +33,13 @@ function DiaryForm(props) {
       alert("Entry must be at least 2 character")
       return
     }
+    if(title.length > 30) {
+      alert("Title must be less than 30 characters")
+      return
+    }
     setIsClosed(true);
-    await fetch(`${process.env.URL}/diaries`, {
+
+    await fetch(`http://localhost:8000/diaries`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
