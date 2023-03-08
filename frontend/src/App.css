@@ -27,11 +27,9 @@ main {
   border: 2px solid rgba(128, 128, 128, 0.207);
   transition: all 0.2s ease-in-out;
   padding: 1rem;
-}
-
-.diary a {
   color: black;
 }
+
 
 a {
   text-decoration: none;
@@ -39,6 +37,9 @@ a {
 
 .diary:hover {
   opacity: 0.8;
+  background-color: rgba(0,0,0,0.2);
+  border: 2px solid rgba(128, 128, 128, 0.1);
+
 }
 
 .diary h2 {

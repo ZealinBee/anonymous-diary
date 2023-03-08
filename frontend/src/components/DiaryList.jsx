@@ -6,7 +6,7 @@ import "../App.css";
 function DiaryList({diaries, setDiaries}) {
 
   useEffect(() => {
-    fetch(`https://anonymous-diary-fullstack.up.railway.app/diaries`)
+    fetch(`http://localhost:8000/diaries`)
       .then((res) => res.json())
       .then((data) => {
         setDiaries(data);
@@ -22,7 +22,7 @@ function DiaryList({diaries, setDiaries}) {
         {diaries.map((diary) => {
           if (diary.entry.length > 100) {
             const shorterEntry =
-              diary.entry.split(" ").slice(0, 60).join(" ") + "...";
+              diary.entry.split(" ").slice(0, 32).join(" ") + "...";
             return (
               <Diary
                 title={diary.title}
@@ -30,7 +30,8 @@ function DiaryList({diaries, setDiaries}) {
                 id={diary._id}
               ></Diary>
             );
-          } else {
+          } 
+          else {
             return (
               <Diary
                 title={diary.title}
