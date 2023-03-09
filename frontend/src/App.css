@@ -15,8 +15,8 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
   place-items: center;
-  gap: 2rem;
   margin-left: 0.4rem;
+  gap:1rem;
 }
 
 .diary {
@@ -64,10 +64,17 @@ a {
   color: black;
 }
 
-.diary-page p {
+.diary-page pre {
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   margin: 0.5rem 0.25rem;
   color: black;
+}
+
+.not-found{
+  font-family: "Golos Text", sans-serif;
+  text-align: center;
+  display:flex;
+  flex-direction: column;
 }

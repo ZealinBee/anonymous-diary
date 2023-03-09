@@ -7,12 +7,12 @@ function Diarypage() {
   const id = useParams();
   const [currentDiary, setCurrentDiary] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:8000/diaries`)
+    fetch(`${import.meta.env.VITE_DEV_URL}/diaries`)
       .then((res) => res.json())
       .then((data) => {
         data.map((diary) => {
           if (
-            JSON.stringify(diary._id).slice(1, -1) ===
+            JSON.stringify(diary.id).slice(1, -1) ===
             Object.values(id).join("")
           ) {
             setCurrentDiary(diary);
@@ -30,7 +30,7 @@ function Diarypage() {
       </Link>
       <div class="diary-page">
         <h1>{currentDiary.title}</h1>
-        <p>{currentDiary.entry}</p>
+        <pre>{currentDiary.entry}</pre>
       </div>
     </>
   );

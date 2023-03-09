@@ -20,6 +20,7 @@ router.post("/diaries", async (req, res) => {
     title: req.body.title,
     entry: req.body.entry,
     date: req.body.date,
+    id: req.body.id,
   });
   try {
     const newEntry = await entry.save();
