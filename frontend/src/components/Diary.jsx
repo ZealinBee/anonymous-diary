@@ -4,7 +4,7 @@ import { Route, Link } from "react-router-dom";
 
 function Diary({ title, entry, id }) {
   return (
-    <Link to={`/${id}`}>
+    <Link to={`/diary/${id}`}>
       <div className="diary">
         <h2>{title}</h2>
         <p>{entry}</p>

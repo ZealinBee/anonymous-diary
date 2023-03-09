@@ -12,7 +12,7 @@ function Diarypage() {
       .then((data) => {
         data.map((diary) => {
           if (
-            JSON.stringify(diary._id).slice(1, -1) ===
+            JSON.stringify(diary.id).slice(1, -1) ===
             Object.values(id).join("")
           ) {
             setCurrentDiary(diary);

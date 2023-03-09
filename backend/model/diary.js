@@ -7,6 +7,7 @@ const DiarySchema = new Schema(
     title: {type:String, required: true, maxlength:100 },
     entry: { type: String, required: true, maxlength:5000 },
     date: { type: Date, required: true },
+    id: {type: String, required: true, maxlength: 100},
   },
   { collection: "entries" },
   { timestamps: true}

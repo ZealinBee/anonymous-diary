@@ -27,7 +27,7 @@ function DiaryList({diaries, setDiaries}) {
               <Diary
                 title={diary.title}
                 entry={shorterEntry}
-                id={diary._id}
+                id={diary.id}
               ></Diary>
             );
           } 
@@ -36,7 +36,7 @@ function DiaryList({diaries, setDiaries}) {
               <Diary
                 title={diary.title}
                 entry={diary.entry}
-                id={diary._id}
+                id={diary.id}
               ></Diary>
             );
           }
