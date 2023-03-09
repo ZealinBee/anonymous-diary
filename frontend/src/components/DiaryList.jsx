@@ -16,6 +16,7 @@ function DiaryList({diaries, setDiaries}) {
       });
   }, []);
 
+
   return (
     <>
       <main>
