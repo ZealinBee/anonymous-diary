@@ -6,7 +6,7 @@ import "../App.css";
 function DiaryList({diaries, setDiaries}) {
 
   useEffect(() => {
-    fetch(`http://localhost:8000/diaries`)
+    fetch(`${import.meta.env.VITE_DEV_URL}/diaries`)
       .then((res) => res.json())
       .then((data) => {
         setDiaries(data);

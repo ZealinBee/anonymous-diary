@@ -42,7 +42,7 @@ function DiaryForm(props) {
     }
     setIsClosed(true);
 
-    await fetch(`http://localhost:8000/diaries`, {
+    await fetch(`${import.meta.env.VITE_DEV_URL}/diaries`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
