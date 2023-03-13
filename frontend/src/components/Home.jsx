@@ -4,19 +4,30 @@ import Button from "@mui/material/Button";
 import DiaryList from "./DiaryList";
 import "../App.css";
 import DiaryForm from "./DiaryForm";
+import Selection from "./Selection";
 
 function Home() {
   const [isClosed, setIsClosed] = useState(true);
   const [diaries, setDiaries] = useState([]);
-
+  const [originalDiaries, setOriginalDiaries] = useState([]);
   return (
     <>
-    
-      <Button variant="contained" onClick={() => setIsClosed(false)}>
-        Write a diary
-      </Button>
-      <DiaryList diaries={diaries} setDiaries={setDiaries}></DiaryList>
-      <DiaryForm isClosed={isClosed} setIsClosed={setIsClosed} diaries={diaries} setDiaries={setDiaries}></DiaryForm>
+      <nav>
+        <Button variant="contained" onClick={() => setIsClosed(false)}>
+          Write a diary
+        </Button>
+        <Selection setDiaries={setDiaries} originalDiaries={originalDiaries}></Selection>
+      </nav>
+
+      <DiaryList diaries={diaries} setDiaries={setDiaries} setOriginalDiaries={setOriginalDiaries}></DiaryList>
+      <DiaryForm
+        isClosed={isClosed}
+        setIsClosed={setIsClosed}
+        diaries={diaries}
+        setDiaries={setDiaries}
+        setOriginalDiaries={setOriginalDiaries}
+        originalDiaries={originalDiaries}
+      ></DiaryForm>
     </>
   );
 }

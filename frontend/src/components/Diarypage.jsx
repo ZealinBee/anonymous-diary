@@ -10,25 +10,24 @@ function Diarypage() {
     fetch(`${import.meta.env.VITE_DEV_URL}/diaries`)
       .then((res) => res.json())
       .then((data) => {
-        data.map((diary) => {
-          if (
-            JSON.stringify(diary.id).slice(1, -1) ===
-            Object.values(id).join("")
-          ) {
-            setCurrentDiary(diary);
-          } else {
-            console.log("nope");
-          }
-        });
+        let foundDiary = data.find(
+          (diary) =>
+            JSON.stringify(diary.id).slice(1, -1) === Object.values(id).join("")
+        );
+        if (foundDiary) {
+          setCurrentDiary(foundDiary);
+        } else {
+          setCurrentDiary({ title: "Diary Not Found", entry: "are you trying to mess around with the url?" });
+        }
       });
-  });
+  }, []);
 
   return (
     <>
       <Link to={"/"}>
-        <Button variant="contained">Back to home</Button>
+        <Button variant="contained" sx={{ marginTop: 2, marginLeft:2}}>Back to home</Button>
       </Link>
-      <div class="diary-page">
+      <div class="diary-page" >
         <h1>{currentDiary.title}</h1>
         <pre>{currentDiary.entry}</pre>
       </div>
