@@ -25,9 +25,9 @@ function Diarypage() {
   return (
     <>
       <Link to={"/"}>
-        <Button variant="contained">Back to home</Button>
+        <Button variant="contained" sx={{ marginTop: 2, marginLeft:2}}>Back to home</Button>
       </Link>
-      <div class="diary-page">
+      <div class="diary-page" >
         <h1>{currentDiary.title}</h1>
         <pre>{currentDiary.entry}</pre>
       </div>

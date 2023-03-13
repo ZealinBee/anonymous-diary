@@ -3,25 +3,26 @@ import Diary from "./Diary";
 import { useState, useEffect } from "react";
 import "../App.css";
 
-function DiaryList({diaries, setDiaries}) {
-
+function DiaryList({ diaries, setDiaries, setOriginalDiaries }) {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_DEV_URL}/diaries`)
       .then((res) => res.json())
       .then((data) => {
         setDiaries(data);
+        setOriginalDiaries(data);
       })
       .catch((error) => {
         console.log("Error fetcing data: ", error);
       });
   }, []);
-
-  const reversedDiaries = [...diaries].reverse();
+  
+ // Not really reversed, just sorted from newest to oldest, this is probably anti pattern but oh well
+  const reversedDiary = [...diaries].reverse();
 
   return (
     <>
       <main>
-        {reversedDiaries.map((diary) => {
+        {reversedDiary.map((diary) => {
           if (diary.entry.length > 100) {
             const shorterEntry =
               diary.entry.split(" ").slice(0, 15).join(" ") + "...";
@@ -32,8 +33,7 @@ function DiaryList({diaries, setDiaries}) {
                 id={diary.id}
               ></Diary>
             );
-          } 
-          else {
+          } else {
             return (
               <Diary
                 title={diary.title}
