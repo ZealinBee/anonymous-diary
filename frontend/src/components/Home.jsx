@@ -25,6 +25,8 @@ function Home() {
         setIsClosed={setIsClosed}
         diaries={diaries}
         setDiaries={setDiaries}
+        setOriginalDiaries={setOriginalDiaries}
+        originalDiaries={originalDiaries}
       ></DiaryForm>
     </>
   );

@@ -11,7 +11,14 @@ function DiaryForm(props) {
   const [title, setTitle] = useState("");
   const [entry, setEntry] = useState("");
   const [id, setId] = useState("");
-  const { isClosed, setIsClosed, diaries, setDiaries } = props;
+  const {
+    isClosed,
+    setIsClosed,
+    diaries,
+    setDiaries,
+    originalDiaries,
+    setOriginalDiaries,
+  } = props;
 
   async function submitForm(e) {
     e.preventDefault();
@@ -59,6 +66,15 @@ function DiaryForm(props) {
       .catch((error) => console.log(error));
     setDiaries([
       ...diaries,
+      {
+        entry: entry,
+        title: title,
+        date: new Date().toLocaleDateString(),
+        id: newId,
+      },
+    ]);
+    setOriginalDiaries([
+      ...originalDiaries,
       {
         entry: entry,
         title: title,
