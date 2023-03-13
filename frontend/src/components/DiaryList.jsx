@@ -16,14 +16,15 @@ function DiaryList({diaries, setDiaries}) {
       });
   }, []);
 
+  const reversedDiaries = [...diaries].reverse();
 
   return (
     <>
       <main>
-        {diaries.map((diary) => {
+        {reversedDiaries.map((diary) => {
           if (diary.entry.length > 100) {
             const shorterEntry =
-              diary.entry.split(" ").slice(0, 32).join(" ") + "...";
+              diary.entry.split(" ").slice(0, 15).join(" ") + "...";
             return (
               <Diary
                 title={diary.title}
